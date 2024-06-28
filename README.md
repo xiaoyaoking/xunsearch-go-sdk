@@ -19,7 +19,7 @@ original author https://github.com/ninggf/xs4go
 
 ## 配置文件
 
-参考`test/demo.toml`和[Xunsearch](http://www.xunsearch.com/doc/php/guide/ini.guide)官方。
+参考`test/demo.ini`和[Xunsearch](http://www.xunsearch.com/doc/php/guide/ini.guide)官方。
 
 ## 分词器
 
