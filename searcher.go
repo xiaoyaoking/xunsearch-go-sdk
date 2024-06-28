@@ -258,7 +258,7 @@ func (searcher *Searcher) Search(queries ...string) ([]*schema.Document, error) 
 	searcher.limit = 10
 	searcher.offset = 0
 	var currSchema *schema.Schema
-	result := make([]*schema.Document, searcher.lastCount)
+	result := []*schema.Document{}
 	if searcher.curDB == logDB {
 		currSchema = searcher.setting.Logger
 	} else {
@@ -267,7 +267,6 @@ func (searcher *Searcher) Search(queries ...string) ([]*schema.Document, error) 
 	vnomap := currSchema.VnoMap()
 	var (
 		doc    *schema.Document
-		docIdx uint32
 		vno    uint8
 		vlen   uint32
 		num    int32
@@ -304,8 +303,7 @@ func (searcher *Searcher) Search(queries ...string) ([]*schema.Document, error) 
 			if err != nil {
 				break
 			}
-			result[docIdx] = doc
-			docIdx++
+			result = append(result,doc)
 		} else if mres.Cmd == cmd.XS_CMD_SEARCH_RESULT_FIELD {
 			if doc != nil {
 				fname, ok := vnomap[uint8(mres.GetArg())]
