@@ -7,6 +7,9 @@ xunsearch golang sdk
 
 3.修复返回 doc 数量错误
 
+4.新增 SetSort 排序选项 
+
+
 original author https://github.com/ninggf/xs4go
 ## 文档
 
