@@ -341,6 +341,30 @@ func (searcher *Searcher) SetQuery(query string) *Searcher {
 	return searcher
 }
 
+// 设置排序
+func (searcher *Searcher) SetSort(field string, asc bool, relevance_first bool) *Searcher {
+	var cmdx *cmd.XsCommand
+	if field == "" {
+		cmdx = cmd.NewCommand(cmd.XS_CMD_SEARCH_SET_SORT, cmd.XS_CMD_SORT_TYPE_RELEVANCE)
+	} else {
+		cmdtype := cmd.XS_CMD_SORT_TYPE_VALUE
+		if relevance_first {
+			cmdtype |= cmd.XS_CMD_SORT_FLAG_RELEVANCE
+		}
+		if asc {
+			cmdtype |= cmd.XS_CMD_SORT_FLAG_ASCENDING
+		}
+		vno := uint8(schema.MIXED_VNO)
+		f, ok := searcher.schema.FieldMetas[field]
+		if ok {
+			vno = f.Vno
+		}
+		cmdx = cmd.NewCommand2(cmd.XS_CMD_SEARCH_SET_SORT, uint8(cmdtype), vno)
+	}
+	searcher.conn.ExecOK(cmdx, 0)
+	return searcher
+}
+
 // AddQueryString 增加默认搜索语句并返回修正后的搜索语句
 //
 // addOp可选值:
