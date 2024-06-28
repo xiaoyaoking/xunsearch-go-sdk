@@ -1,8 +1,11 @@
 # xunsearch-go-sdk
 xunsearch golang sdk
 
-兼容原生ini配置文件
-修复字段乱序问题
+1.兼容原生ini配置文件
+
+2.修复字段乱序问题
+
+3.修复返回 doc 数量错误
 
 original author https://github.com/ninggf/xs4go
 ## 文档
