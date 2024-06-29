@@ -667,7 +667,9 @@ func (searcher *Searcher) logQuery() {
 		if pos2 == pos {
 			sbuf.WriteString(terms[i])
 		} else if pos2 < pos {
-			sbuf.WriteString(terms[i][3:])
+			if len(terms[i]) > 3 {
+				sbuf.WriteString(terms[i][3:])
+			}
 		} else {
 			max++
 			if max > 3 || sbuf.Len() > 42 {
