@@ -9,6 +9,8 @@ xunsearch golang sdk
 
 4.新增 SetSort 排序选项 
 
+5.修复 logQuery 关键词小于3 导致崩溃的问题
+
 
 original author https://github.com/ninggf/xs4go
 ## 文档
